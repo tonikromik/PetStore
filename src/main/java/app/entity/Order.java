@@ -11,7 +11,9 @@ import static jakarta.persistence.EnumType.*;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, unique = true)
     private long id;
+
     private long petId;
     private int quantity;
     @DateTimeFormat

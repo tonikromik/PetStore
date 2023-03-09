@@ -10,12 +10,17 @@ import static jakarta.persistence.EnumType.*;
 public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, unique = true)
     private long id;
-    @OneToOne
+    @OneToOne(mappedBy = "pet",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private Category category;
 
     private String photoUrls;
-    @OneToOne
+    @OneToOne(mappedBy = "pet",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private Tag tag;
     @Enumerated(STRING)
     private Status status;

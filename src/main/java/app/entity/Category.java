@@ -11,8 +11,4 @@ public class Category {
     @Column(nullable = false, unique = true)
     private long id;
     private String name;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
-    private Pet pet;
 }

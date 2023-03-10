@@ -2,25 +2,26 @@ package app.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import static jakarta.persistence.EnumType.*;
 
 @Data
 @Entity
-public class Order {
+public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
     private long id;
-
-    private long petId;
+    @ManyToOne(fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    @JoinColumn(name = "pet_id", referencedColumnName = "id")
+    private Pet pet;
     private int quantity;
-    @DateTimeFormat
+//    @DateTimeFormat
     private String shipDate;
     @Enumerated(STRING)
     private Status status;
-    private boolean complete;
+    private boolean completed;
 
     public enum Status {
         PLACED,

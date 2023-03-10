@@ -12,15 +12,15 @@ public class Pet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
     private long id;
-    @OneToOne(mappedBy = "pet",
-            fetch = FetchType.LAZY,
+    private String name;
+    @ManyToOne(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
-
     private String photoUrls;
-    @OneToOne(mappedBy = "pet",
-            fetch = FetchType.LAZY,
+    @ManyToOne(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
+    @JoinColumn(name = "tag_id", referencedColumnName = "id")
     private Tag tag;
     @Enumerated(STRING)
     private Status status;
